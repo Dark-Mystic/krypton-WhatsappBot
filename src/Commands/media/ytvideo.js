@@ -3,7 +3,7 @@ const yts = require('yt-search')
 
 module.exports = {
     name: 'ytvideo',
-    aliases: ['ytv'],
+    aliases: ['ytv','video'],
     category: 'media',
     exp: 5,
     description: 'Downloads given YT Video',
@@ -13,7 +13,7 @@ module.exports = {
             if (!videos || !videos.length) return null
             return videos[0].url
         }
-        if (!arg) return M.reply('Please use this command with a valid youtube.com link')
+        if (!arg) return M.reply('*Please give me a YouTube link or name!*')
         const validPathDomains = /^https?:\/\/(youtu\.be\/|(www\.)?youtube\.com\/(embed|v|shorts)\/)/
         const term = validPathDomains.test(arg) ? arg.trim() : await link(arg)
         if (!term) return M.reply('Please use this command with a valid youtube contant link')
