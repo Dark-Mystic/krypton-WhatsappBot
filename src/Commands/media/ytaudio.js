@@ -3,7 +3,7 @@ const yts = require('yt-search')
 
 module.exports = {
     name: 'ytaudio',
-    aliases: ['yta'],
+    aliases: ['song','play'],
     category: 'media',
     exp: 5,
     description: 'Downloads given YT Video and sends it as Audio',
@@ -13,13 +13,13 @@ module.exports = {
             if (!videos || !videos.length) return null
             return videos[0].url
         }
-        if (!arg) return M.reply('Please use this command with a valid youtube.com link')
+        if (!arg) return M.reply('*Please give me a YouTube link or name!*')
         const validPathDomains = /^https?:\/\/(youtu\.be\/|(www\.)?youtube\.com\/(embed|v|shorts)\/)/
         const term = validPathDomains.test(arg) ? arg.trim() : await link(arg)
-        if (!term) return M.reply('Please use this command with a valid youtube contant link')
+        if (!term) return M.reply('Please use this command with a vaild YouTube link and text')
         if (!YT.validateURL(term.trim())) return M.reply('Please use this command with a valid youtube.com link')
         const { videoDetails } = await YT.getInfo(term)
-        M.reply('Downloading has started please have some pesence')
+        M.reply('*Downloading has started please have some pesence*')
         let text = `*Title:* ${videoDetails.title} | *Type:* Audio | *From:* ${videoDetails.ownerChannelName}`
         client.sendMessage(
             M.from,
